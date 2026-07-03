@@ -41,15 +41,11 @@ export class RemoteErrorBoundary extends Component<
           className="rounded-lg border border-red-200 bg-red-50 p-6 shadow-sm"
           role="alert"
         >
-          <p className="text-sm font-medium uppercase tracking-wide text-red-700">
-            Remote failed
-          </p>
+          <p className="text-sm font-medium uppercase tracking-wide text-red-700">Remote failed</p>
           <h2 className="mt-3 text-2xl font-semibold text-red-950">
             {this.props.remoteName} is unavailable
           </h2>
-          <p className="mt-3 max-w-2xl text-red-800">
-            {getErrorMessage(this.state.error)}
-          </p>
+          <p className="mt-3 max-w-2xl text-red-800">{getErrorMessage(this.state.error)}</p>
           <button
             className="mt-5 rounded-md border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-800 hover:border-red-500"
             onClick={() => window.location.reload()}

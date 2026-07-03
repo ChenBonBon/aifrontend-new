@@ -1,5 +1,3 @@
 packages:
   - "apps/*"
   - "packages/*"
-overrides:
-  "picomatch": "4.0.4"

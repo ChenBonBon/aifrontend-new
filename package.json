@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm",
+  "packageManager": "pnpm@11.7.0",
   "scripts": {
     "dev": "pnpm -r --parallel --filter './apps/*' dev",
     "dev:shell": "pnpm --filter @ai-frontend/shell dev",
@@ -11,10 +11,12 @@
     "build": "pnpm -r build",
     "build:shell": "pnpm --filter @ai-frontend/shell build",
     "build:workspace": "pnpm --filter @ai-frontend/workspace build",
-    "preview": "pnpm -r build && pnpm -r --parallel --filter './apps/*' preview",
-    "typecheck": "pnpm -r typecheck"
+    "watch": "pnpm -r build && pnpm -r --parallel --filter './apps/*' watch",
+    "typecheck": "pnpm -r typecheck",
+    "format": "pnpm -r --parallel --filter './apps/*' --filter './packages/*' format"
   },
   "devDependencies": {
+    "oxfmt": "^0.57.0",
     "typescript": "^5.9.3"
   }
 }

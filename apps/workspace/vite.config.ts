@@ -1,14 +1,8 @@
 import { defineConfig, mergeConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import {
-  federation,
-  createModuleFederationConfig,
-} from "@module-federation/vite";
-import {
-  reactFederationShared,
-  reactViteConfig,
-} from "../../packages/config/vite/react.ts";
+import { federation, createModuleFederationConfig } from "@module-federation/vite";
+import { reactFederationShared, reactViteConfig } from "../../packages/config/vite/react.ts";
 
 const createFederationConfig = (isDev: boolean) =>
   createModuleFederationConfig({

@@ -31,9 +31,7 @@ function App() {
               </div>
               <div>
                 <dt className="text-slate-500">Remote entry</dt>
-                <dd className="break-all font-medium">
-                  http://localhost:5174/mf-manifest.json
-                </dd>
+                <dd className="break-all font-medium">http://localhost:5174/mf-manifest.json</dd>
               </div>
             </dl>
           </aside>
