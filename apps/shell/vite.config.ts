@@ -1,10 +1,14 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, mergeConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import {
   federation,
   createModuleFederationConfig,
 } from "@module-federation/vite";
+import {
+  reactFederationShared,
+  reactViteConfig,
+} from "../../packages/config/vite/react.ts";
 
 const DEFAULT_WORKSPACE_DEV_MANIFEST_URL =
   "http://localhost:5174/mf-manifest.json";
@@ -30,17 +34,7 @@ const createFederationConfig = (
             shareScope: "default",
           },
     },
-    shared: {
-      react: {
-        singleton: true,
-      },
-      "react/": {
-        singleton: true,
-      },
-      "react-dom": {
-        singleton: true,
-      },
-    },
+    shared: reactFederationShared,
   });
 
 // https://vite.dev/config/
@@ -54,15 +48,12 @@ export default defineConfig(({ command, mode }) => {
     env.SHELL_WORKSPACE_REMOTE_ENTRY_URL ??
     DEFAULT_WORKSPACE_REMOTE_ENTRY_URL;
 
-  return {
+  return mergeConfig(reactViteConfig, {
     server: {
       port: 5173,
     },
     preview: {
       port: 4173,
-    },
-    build: {
-      target: "chrome89",
     },
     plugins: [
       react(),
@@ -75,5 +66,5 @@ export default defineConfig(({ command, mode }) => {
         ),
       ),
     ],
-  };
+  });
 });
