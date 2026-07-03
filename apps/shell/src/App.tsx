@@ -1,10 +1,21 @@
 import { lazy, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { RemoteErrorBoundary } from "./RemoteErrorBoundary";
+import { useUserStore } from "./store/user";
 
 const WorkspaceApp = lazy(() => import("workspace/App"));
 
 function App() {
+  const navigate = useNavigate();
+  const user = useUserStore((state) => state.user);
+  const clearUser = useUserStore((state) => state.clearUser);
+
+  const onLogout = () => {
+    clearUser();
+    navigate("/login", { replace: true });
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8">
@@ -14,6 +25,19 @@ function App() {
               Module Federation host
             </p>
             <h1 className="mt-2 text-3xl font-semibold">AI Frontend Shell</h1>
+          </div>
+          <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm">
+            <div>
+              <p className="text-sm font-semibold">{user?.user_name}</p>
+              <p className="text-xs text-slate-500">{user?.role}</p>
+            </div>
+            <button
+              className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium transition hover:bg-slate-100"
+              onClick={onLogout}
+              type="button"
+            >
+              Logout
+            </button>
           </div>
         </header>
 
