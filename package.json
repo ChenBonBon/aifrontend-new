@@ -1,0 +1,17 @@
+{
+  "name": "ai-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter './apps/*' dev",
+    "dev:shell": "pnpm --filter @ai-frontend/shell dev",
+    "dev:workspace": "pnpm --filter @ai-frontend/workspace dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
